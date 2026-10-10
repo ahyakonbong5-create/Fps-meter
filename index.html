@@ -19,6 +19,292 @@
   <meta property="og:site_name" content="FPS Meter">
 
   <style>
+    /* ===== FPS METER: NEON GAMING UPGRADE ===== */
+
+body {
+  position: relative;
+  isolation: isolate;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: -50%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      circle at 25% 30%,
+      #8b5cf633 0,
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 75% 60%,
+      #00e5ff25 0,
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 50% 85%,
+      #ff39d415 0,
+      transparent 25%
+    );
+  animation: neonDrift 12s ease-in-out infinite alternate;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .16;
+  background-image:
+    linear-gradient(#ffffff0b 1px, transparent 1px),
+    linear-gradient(90deg, #ffffff0b 1px, transparent 1px);
+  background-size: 38px 38px;
+  mask-image: linear-gradient(to bottom, black, transparent 90%);
+}
+
+.logo {
+  animation: logoPulse 3s ease-in-out infinite;
+}
+
+.badge {
+  box-shadow: 0 0 22px #9b6bff18;
+  animation: badgeGlow 3s ease-in-out infinite;
+}
+
+.gradient-text {
+  background-size: 200% auto;
+  animation: gradientFlow 5s linear infinite;
+}
+
+.device-wrap {
+  position: relative;
+}
+
+.device-wrap::before {
+  content: "";
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: #8b5cf62b;
+  filter: blur(65px);
+  animation: auraPulse 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.device {
+  position: relative;
+  z-index: 1;
+  transition: box-shadow .35s ease;
+  will-change: transform;
+}
+
+.device:hover {
+  box-shadow:
+    0 35px 100px #000a,
+    0 0 45px #50e8ff30,
+    0 0 85px #9b6bff30;
+}
+
+.fps-number {
+  animation: fpsGlow 2.5s ease-in-out infinite;
+}
+
+.bar {
+  transform-origin: bottom;
+  animation:
+    grow 1s ease-out both,
+    barPulse 2s ease-in-out infinite alternate;
+}
+
+.bar:nth-child(2n) {
+  animation-delay: .15s, .3s;
+}
+
+.bar:nth-child(3n) {
+  animation-delay: .3s, .6s;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 15%,
+    #50e8ff12 50%,
+    transparent 85%
+  );
+  transform: translateX(-100%);
+  transition: opacity .3s;
+}
+
+.card:hover::before {
+  opacity: 1;
+  animation: cardShine .8s ease;
+}
+
+.card:hover .icon {
+  transform: translateY(-3px) scale(1.06);
+  box-shadow: 0 0 24px #9b6bff25;
+}
+
+.icon {
+  transition: transform .25s, box-shadow .25s;
+}
+
+.primary {
+  box-shadow: 0 0 25px #50e8ff20;
+  transition: transform .2s, box-shadow .2s, filter .2s;
+}
+
+.primary:hover {
+  box-shadow:
+    0 0 25px #50e8ff40,
+    0 0 45px #9b6bff30;
+  filter: brightness(1.12);
+}
+
+.cta {
+  position: relative;
+  overflow: hidden;
+}
+
+.cta::before {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: -50%;
+  width: 200%;
+  height: 300%;
+  pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    transparent 40%,
+    #ffffff08 50%,
+    transparent 60%
+  );
+  animation: ctaShine 7s linear infinite;
+}
+
+@keyframes neonDrift {
+  from {
+    transform: translate3d(-2%, -1%, 0) rotate(0deg);
+  }
+  to {
+    transform: translate3d(2%, 1%, 0) rotate(8deg);
+  }
+}
+
+@keyframes logoPulse {
+  0%, 100% {
+    box-shadow: 0 0 18px #9065ff35;
+  }
+  50% {
+    box-shadow: 0 0 32px #50e8ff65;
+  }
+}
+
+@keyframes badgeGlow {
+  0%, 100% {
+    border-color: #9b6bff66;
+  }
+  50% {
+    border-color: #50e8ff99;
+  }
+}
+
+@keyframes gradientFlow {
+  to {
+    background-position: 200% center;
+  }
+}
+
+@keyframes auraPulse {
+  0%, 100% {
+    transform: scale(.85);
+    opacity: .55;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+}
+
+@keyframes fpsGlow {
+  0%, 100% {
+    text-shadow: 0 0 18px #50e8ff35;
+  }
+  50% {
+    text-shadow:
+      0 0 25px #50e8ff90,
+      0 0 45px #50e8ff35;
+  }
+}
+
+@keyframes barPulse {
+  from {
+    filter: brightness(.75);
+  }
+  to {
+    filter: brightness(1.35);
+  }
+}
+
+@keyframes cardShine {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes ctaShine {
+  from {
+    transform: translateX(-35%);
+  }
+  to {
+    transform: translateX(35%);
+  }
+}
+
+/* Mobile performance */
+@media (max-width: 760px) {
+  body::after {
+    background-size: 30px 30px;
+  }
+
+  .device-wrap::before {
+    filter: blur(45px);
+  }
+}
+
+/* Respect reduced-motion settings */
+@media (prefers-reduced-motion: reduce) {
+  body::before,
+  body::after,
+  .logo,
+  .badge,
+  .gradient-text,
+  .device-wrap::before,
+  .fps-number,
+  .bar,
+  .cta::before {
+    animation: none !important;
+  }
+}
     :root {
       color-scheme: dark;
       --bg: #080914;
