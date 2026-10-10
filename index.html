@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090b12">
+<meta name="description" content="FPS Meter for Android. Monitor frame rate, CPU, memory, and device temperature.">
+<title>FPS Meter — Android Performance Monitor</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#090b12;
+  color:#f5f7ff;
+}
+header{
+  padding:20px;
+  border-bottom:1px solid #252a3b;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.logo{font-size:23px;font-weight:800;color:#8c7bff}
+.badge{color:#a6a9bd;font-size:12px}
+main{max-width:900px;margin:auto;padding:28px 20px}
+.hero{text-align:center;padding:50px 0 35px}
+.icon{
+  width:86px;height:86px;border-radius:23px;
+  margin:auto auto 22px;
+  background:linear-gradient(135deg,#8c7bff,#40d9c2);
+  display:grid;place-items:center;
+  font-size:35px;font-weight:900;color:#090b12;
+  box-shadow:0 0 45px #7065ff30;
+}
+h1{font-size:clamp(32px,8vw,54px);margin:0 0 16px}
+h1 span{color:#8c7bff}
+p{color:#aeb4c8;line-height:1.7}
+.hero p{max-width:600px;margin:0 auto 25px}
+.button{
+  display:inline-block;padding:14px 24px;border-radius:12px;
+  background:#8c7bff;color:white;text-decoration:none;
+  font-weight:bold;margin:6px;border:1px solid #a79aff;
+}
+.button.secondary{background:#171b29;border-color:#333950}
+.note{font-size:12px;color:#8189a3;margin-top:15px}
+h2{font-size:25px;margin-top:45px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.card{
+  background:#121624;border:1px solid #272d42;
+  padding:20px;border-radius:16px;
+}
+.card .emoji{font-size:26px}
+.card h3{margin:12px 0 5px}
+.card p{font-size:14px;margin:0}
+footer{
+  text-align:center;border-top:1px solid #252a3b;
+  padding:25px 15px;color:#858ca5;font-size:13px;
+}
+@media(min-width:650px){.grid{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">FPS METER</div>
+  <div class="badge">ANDROID PERFORMANCE</div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="icon">FPS</div>
+  <h1>Know Your <span>Performance.</span></h1>
+  <p>
+    Monitor your Android device performance with FPS tracking,
+    CPU and memory statistics, temperature monitoring,
+    and gaming session history.
+  </p>
+  <a class="button" href="#download">Get FPS Meter</a>
+  <a class="button secondary" href="#features">Explore Features</a>
+  <div class="note">Android performance monitoring · Built for gamers</div>
+</section>
+
+<section id="features">
+  <h2>Everything You Need</h2>
+  <div class="grid">
+    <article class="card">
+      <div class="emoji">🎮</div>
+      <h3>FPS Tracking</h3>
+      <p>Track frame-rate changes during supported gaming sessions.</p>
+    </article>
+    <article class="card">
+      <div class="emoji">⚡</div>
+      <h3>CPU Monitor</h3>
+      <p>View available processor usage statistics.</p>
+    </article>
+    <article class="card">
+      <div class="emoji">🧠</div>
+      <h3>Memory Monitor</h3>
+      <p>Check memory usage and understand device workload.</p>
+    </article>
+    <article class="card">
+      <div class="emoji">🌡️</div>
+      <h3>Temperature</h3>
+      <p>View supported device temperature readings.</p>
+    </article>
+    <article class="card">
+      <div class="emoji">📊</div>
+      <h3>Session History</h3>
+      <p>Review recorded performance sessions and statistics.</p>
+    </article>
+    <article class="card">
+      <div class="emoji">🏆</div>
+      <h3>Performance Tests</h3>
+      <p>Explore performance testing features as they become available.</p>
+    </article>
+  </div>
+</section>
+
+<section id="download">
+  <h2>Get FPS Meter</h2>
+  <p>
+    The Android download will be available here when the
+    APK has been uploaded to the project releases.
+  </p>
+  <a class="button secondary"
+     href="https://github.com/ahyakonbong5-create/Fps-meter/releases">
+     View Releases
+  </a>
+  <p class="note">
+    Only install APK files from sources you trust.
+  </p>
+</section>
+</main>
+
+<footer>
+  <p>FPS Meter · Android Performance Monitor</p>
+  <p>Independent project. Not affiliated with Google or Android.</p>
+  <a href="https://github.com/ahyakonbong5-create/Fps-meter"
+     style="color:#a99cff">GitHub Repository</a>
+</footer>
+</body>
+  </html>
