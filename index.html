@@ -14,124 +14,7 @@
 <meta property="og:url" content="https://ahyakonbong5-create.github.io/Fps-meter/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="FPS Meter">
-<style>
-body{position:relative;isolation:isolate}
-body::before{content:"";position:fixed;inset:-50%;z-index:-1;pointer-events:none;background:radial-gradient(circle at 25% 30%,#8b5cf633 0,transparent 28%),radial-gradient(circle at 75% 60%,#00e5ff25 0,transparent 30%),radial-gradient(circle at 50% 85%,#ff39d415 0,transparent 25%);animation:neonDrift 12s ease-in-out infinite alternate}
-body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.16;background-image:linear-gradient(#ffffff0b 1px,transparent 1px),linear-gradient(90deg,#ffffff0b 1px,transparent 1px);background-size:38px 38px;mask-image:linear-gradient(to bottom,black,transparent 90%)}
-.logo{animation:logoPulse 3s ease-in-out infinite}
-.badge{box-shadow:0 0 22px #9b6bff18;animation:badgeGlow 3s ease-in-out infinite}
-.gradient-text{background-size:200% auto;animation:gradientFlow 5s linear infinite}
-.device-wrap{position:relative}
-.device-wrap::before{content:"";position:absolute;width:250px;height:250px;border-radius:50%;background:#8b5cf62b;filter:blur(65px);animation:auraPulse 4s ease-in-out infinite;pointer-events:none}
-.device{position:relative;z-index:1;transition:box-shadow .35s ease;will-change:transform}
-.device:hover{box-shadow:0 35px 100px #000a,0 0 45px #50e8ff30,0 0 85px #9b6bff30}
-.fps-number{animation:fpsGlow 2.5s ease-in-out infinite}
-.bar{transform-origin:bottom;animation:grow 1s ease-out both,barPulse 2s ease-in-out infinite alternate}
-.bar:nth-child(2n){animation-delay:.15s,.3s}
-.bar:nth-child(3n){animation-delay:.3s,.6s}
-.card{position:relative;overflow:hidden;isolation:isolate}
-.card::before{content:"";position:absolute;inset:0;z-index:-1;opacity:0;background:linear-gradient(120deg,transparent 15%,#50e8ff12 50%,transparent 85%);transform:translateX(-100%);transition:opacity .3s}
-.card:hover::before{opacity:1;animation:cardShine .8s ease}
-.card:hover .icon{transform:translateY(-3px) scale(1.06);box-shadow:0 0 24px #9b6bff25}
-.icon{transition:transform .25s,box-shadow .25s}
-.primary{box-shadow:0 0 25px #50e8ff20;transition:transform .2s,box-shadow .2s,filter .2s}
-.primary:hover{box-shadow:0 0 25px #50e8ff40,0 0 45px #9b6bff30;filter:brightness(1.12)}
-.cta{position:relative;overflow:hidden}
-.cta::before{content:"";position:absolute;top:-100%;left:-50%;width:200%;height:300%;pointer-events:none;background:linear-gradient(115deg,transparent 40%,#ffffff08 50%,transparent 60%);animation:ctaShine 7s linear infinite}
-@keyframes neonDrift{from{transform:translate3d(-2%,-1%,0) rotate(0deg)}to{transform:translate3d(2%,1%,0) rotate(8deg)}}
-@keyframes logoPulse{0%,100%{box-shadow:0 0 18px #9065ff35}50%{box-shadow:0 0 32px #50e8ff65}}
-@keyframes badgeGlow{0%,100%{border-color:#9b6bff66}50%{border-color:#50e8ff99}}
-@keyframes gradientFlow{to{background-position:200% center}}
-@keyframes auraPulse{0%,100%{transform:scale(.85);opacity:.55}50%{transform:scale(1.15);opacity:1}}
-@keyframes fpsGlow{0%,100%{text-shadow:0 0 18px #50e8ff35}50%{text-shadow:0 0 25px #50e8ff90,0 0 45px #50e8ff35}}
-@keyframes barPulse{from{filter:brightness(.75)}to{filter:brightness(1.35)}}
-@keyframes cardShine{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
-@keyframes ctaShine{from{transform:translateX(-35%)}to{transform:translateX(35%)}}
-@media (max-width:760px){body::after{background-size:30px 30px}.device-wrap::before{filter:blur(45px)}}
-@media (prefers-reduced-motion:reduce){body::before,body::after,.logo,.badge,.gradient-text,.device-wrap::before,.fps-number,.bar,.cta::before{animation:none!important}}
-
-:root{color-scheme:dark;--bg:#080914;--panel:#111426;--text:#f5f6ff;--muted:#a6abc4;--purple:#9b6bff;--cyan:#50e8ff;--border:rgba(255,255,255,.1)}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Khmer",sans-serif;color:var(--text);background:radial-gradient(ellipse at 15% 10%,#39216a55,transparent 40%),radial-gradient(ellipse at 85% 35%,#075c7350,transparent 38%),var(--bg);line-height:1.6;overflow-x:hidden}
-a{color:inherit;text-decoration:none}
-.container{width:min(1100px,90%);margin:auto}
-.navbar{position:sticky;top:0;z-index:10;backdrop-filter:blur(18px);background:#080914d9;border-bottom:1px solid var(--border)}
-.nav-inner{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:14px}
-.brand{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:850;letter-spacing:-.5px}
-.logo{width:40px;height:40px;display:grid;place-items:center;border-radius:13px;background:linear-gradient(135deg,var(--purple),#5144e9);box-shadow:0 0 25px #9065ff50}
-.nav-links{display:flex;align-items:center;gap:22px;color:var(--muted);font-size:14px}
-.nav-links a:hover{color:var(--cyan)}
-.lang{display:flex}
-.lang button{background:#ffffff0d;border:1px solid var(--border);color:var(--muted);padding:7px 12px;font:inherit;font-size:13px;cursor:pointer}
-.lang button:first-child{border-radius:999px 0 0 999px}
-.lang button:last-child{border-radius:0 999px 999px 0;border-left:0}
-.lang button.on{background:linear-gradient(100deg,var(--cyan),#9e8aff);color:#080914;border-color:transparent;font-weight:800}
-.button{display:inline-flex;justify-content:center;align-items:center;gap:8px;min-height:48px;padding:12px 20px;border:1px solid var(--border);border-radius:14px;font-weight:750;transition:transform .2s,box-shadow .2s}
-.button:hover{transform:translateY(-3px);box-shadow:0 10px 35px #8e65ff35}
-.primary{color:#080914;background:linear-gradient(100deg,var(--cyan),#9e8aff);border:none}
-.hero{min-height:590px;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:45px;padding-top:70px;padding-bottom:70px}
-.badge{display:inline-flex;align-items:center;gap:8px;border:1px solid #9b6bff66;background:#9b6bff15;color:#c6b3ff;border-radius:999px;padding:7px 13px;font-size:12px;font-weight:750}
-h1{font-size:clamp(42px,6vw,72px);line-height:1.05;letter-spacing:-2.8px;margin:22px 0}
-.gradient-text{background:linear-gradient(90deg,var(--cyan),#a68aff,#ff9be8);-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero-copy{max-width:560px;color:var(--muted);font-size:17px}
-.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
-.note{margin-top:16px;font-size:12px;color:var(--muted)}
-.device-wrap{display:grid;place-items:center;perspective:1000px}
-.device{width:min(300px,85%);min-height:390px;padding:15px;border-radius:34px;border:1px solid #ffffff30;background:linear-gradient(145deg,#272b46,#101221 55%);box-shadow:0 30px 90px #0008,0 0 70px #8e65ff25;transform:rotateY(-9deg) rotateX(4deg);animation:float 5s ease-in-out infinite}
-.screen{min-height:360px;border-radius:23px;padding:23px 17px;background:radial-gradient(circle at top right,#2a2363,transparent 45%),#080a17;border:1px solid #ffffff13}
-.screen-label{color:var(--muted);font-size:12px}
-.fps-number{font-size:70px;font-weight:900;line-height:1.2;letter-spacing:-3px;margin-top:24px;color:var(--cyan);text-shadow:0 0 30px #50e8ff55}
-.fps-caption{color:var(--muted);font-size:12px}
-.chart{height:90px;display:flex;align-items:end;gap:5px;margin-top:25px;border-bottom:1px solid #ffffff20}
-.bar{flex:1;height:var(--h);border-radius:5px 5px 0 0;background:linear-gradient(to top,#6c52ff,var(--cyan));animation:grow 1s ease-out both}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
-.stat{padding:12px;border-radius:12px;background:#ffffff08;border:1px solid #ffffff10}
-.stat strong{display:block;font-size:17px}
-.stat span{font-size:11px;color:var(--muted)}
-.section{padding:65px 0}
-.section-heading{text-align:center;max-width:650px;margin:0 auto 35px}
-.section-heading h2{font-size:clamp(29px,4vw,42px);line-height:1.2;margin:0 0 12px}
-.section-heading p{color:var(--muted)}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.card{padding:25px;background:linear-gradient(145deg,#171a30,#0e1020);border:1px solid var(--border);border-radius:20px;transition:transform .25s,border-color .25s}
-.card:hover{transform:translateY(-6px);border-color:#9b6bff99}
-.icon{width:48px;height:48px;display:grid;place-items:center;border-radius:15px;background:#9b6bff20;font-size:23px;margin-bottom:18px}
-.card h3{margin:0 0 9px}
-.card p{color:var(--muted);font-size:14px;margin-bottom:0}
-.more{text-align:center;color:var(--muted);margin:24px auto 0;max-width:680px;font-size:14px}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.step{display:flex;gap:14px}
-.num{flex:none;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-weight:850;color:#080914;background:linear-gradient(135deg,var(--cyan),#9e8aff)}
-.step h3{margin:0 0 6px}
-.step p{margin:0 0 6px}
-.step a{color:var(--cyan)}
-.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px}
-.gal img{width:100%;border-radius:18px;border:1px solid var(--border)}
-.know{max-width:720px;margin:0 auto;padding-left:22px;color:var(--muted)}
-.know li{margin:8px 0}
-.cta{text-align:center;padding:45px 25px;border:1px solid #9b6bff50;border-radius:25px;background:radial-gradient(ellipse at top,#603ba333,transparent 70%),#111326}
-.cta h2{font-size:clamp(28px,4vw,42px);margin:0 0 12px}
-.cta p{color:var(--muted);margin-bottom:25px}
-footer{margin-top:60px;border-top:1px solid var(--border);padding:28px 0;color:var(--muted);font-size:13px}
-.footer-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
-.footer-inner a:hover{color:var(--cyan)}
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s,transform .7s}
-.reveal.visible{opacity:1;transform:translateY(0)}
-@keyframes float{0%,100%{transform:translateY(0) rotateY(-9deg) rotateX(4deg)}50%{transform:translateY(-12px) rotateY(-5deg) rotateX(2deg)}}
-@keyframes grow{from{height:0}to{height:var(--h)}}
-@media (max-width:760px){
-.nav-links{gap:12px;font-size:12px}
-.nav-links .hide-mobile{display:none}
-.hero{grid-template-columns:1fr;text-align:center;padding-top:55px}
-.hero-copy{margin:auto}
-.actions{justify-content:center}
-.device{width:270px}
-.cards,.steps{grid-template-columns:1fr}
-h1{letter-spacing:-1.7px}
-}
-@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -139,8 +22,8 @@ h1{letter-spacing:-1.7px}
   <div class="container nav-inner">
     <a class="brand" href="#home" aria-label="FPS Meter home"><span class="logo">⚡</span><span>FPS METER</span></a>
     <nav class="nav-links" aria-label="Main navigation">
-      <a class="hide-mobile" href="#features" data-k="nFeat"></a>
-      <a class="hide-mobile" href="#start" data-k="nStart"></a>
+      <a class="hide-mobile" href="#features" data-k="nFeat">Features</a>
+      <a class="hide-mobile" href="#start" data-k="nStart">Get started</a>
       <a href="https://github.com/ahyakonbong5-create/Fps-meter" target="_blank" rel="noopener">GitHub ↗</a>
       <div class="lang"><button data-l="en">EN</button><button data-l="km">ខ្មែរ</button></div>
     </nav>
@@ -150,14 +33,14 @@ h1{letter-spacing:-1.7px}
 <main>
   <section class="container hero" id="home">
     <div>
-      <span class="badge" data-k="badge"></span>
-      <h1><span data-k="h1a"></span><br><span class="gradient-text" data-k="h1b"></span></h1>
-      <p class="hero-copy" data-k="lead"></p>
+      <span class="badge" data-k="badge">⚡ BUILT FOR MOBILE GAMERS</span>
+      <h1><span data-k="h1a">Know Your</span><br><span class="gradient-text" data-k="h1b">Gaming FPS.</span></h1>
+      <p class="hero-copy" data-k="lead">FPS Meter shows your game's real frame rate on top of the game, then helps you understand stutter, heat and smoothness after you play.</p>
       <div class="actions">
-        <a class="button primary" id="dl" href="https://github.com/ahyakonbong5-create/Fps-meter/releases" data-k="dl"></a>
-        <a class="button" href="https://github.com/ahyakonbong5-create/Fps-meter" target="_blank" rel="noopener" data-k="src"></a>
+        <a class="button primary" id="dl" href="https://github.com/ahyakonbong5-create/Fps-meter/releases" data-k="dl">↓ Download FPS Meter</a>
+        <a class="button" href="https://github.com/ahyakonbong5-create/Fps-meter" target="_blank" rel="noopener" data-k="src">View Source ↗</a>
       </div>
-      <p class="note"><span data-k="req"></span> <span id="ver"></span></p>
+      <p class="note"><span data-k="req">Android 8.0+ · Needs Shizuku · No ads</span> <span id="ver"></span></p>
     </div>
 
     <div class="device-wrap" aria-label="Illustration of an FPS monitoring screen">
@@ -185,24 +68,24 @@ h1{letter-spacing:-1.7px}
   <section class="section" id="features">
     <div class="container">
       <div class="section-heading reveal">
-        <h2 data-k="feat"></h2>
-        <p data-k="featSub"></p>
+        <h2 data-k="feat">Built for Your Gaming Sessions</h2>
+        <p data-k="featSub">Real tools to understand your phone's gaming performance.</p>
       </div>
       <div class="cards">
-        <article class="card reveal"><div class="icon">📊</div><h3 data-k="f1t"></h3><p data-k="f1d"></p></article>
-        <article class="card reveal"><div class="icon">⏱️</div><h3 data-k="f2t"></h3><p data-k="f2d"></p></article>
-        <article class="card reveal"><div class="icon">🕘</div><h3 data-k="f3t"></h3><p data-k="f3d"></p></article>
-        <article class="card reveal"><div class="icon">🌡️</div><h3 data-k="f4t"></h3><p data-k="f4d"></p></article>
-        <article class="card reveal"><div class="icon">🏆</div><h3 data-k="f5t"></h3><p data-k="f5d"></p></article>
-        <article class="card reveal"><div class="icon">🖼️</div><h3 data-k="f6t"></h3><p data-k="f6d"></p></article>
+        <article class="card reveal"><div class="icon">📊</div><h3 data-k="f1t">Live FPS overlay</h3><p data-k="f1d">A draggable overlay with min / avg / max, colour by FPS level and a small graph.</p></article>
+        <article class="card reveal"><div class="icon">⏱️</div><h3 data-k="f2t">1% low and frame time</h3><p data-k="f2d">See stutter, not just the average FPS.</p></article>
+        <article class="card reveal"><div class="icon">🕘</div><h3 data-k="f3t">Session history</h3><p data-k="f3d">Every game session is saved with a graph you can open later.</p></article>
+        <article class="card reveal"><div class="icon">🌡️</div><h3 data-k="f4t">Heat analysis</h3><p data-k="f4d">Compare FPS with temperature to see if heat is slowing your game.</p></article>
+        <article class="card reveal"><div class="icon">🏆</div><h3 data-k="f5t">60-second benchmark</h3><p data-k="f5d">Get a graded report (S / A / B / C) with smoothness and temperature.</p></article>
+        <article class="card reveal"><div class="icon">🖼️</div><h3 data-k="f6t">Share cards</h3><p data-k="f6d">Turn a session into a result image to send to friends.</p></article>
       </div>
-      <p class="more" data-k="more"></p>
+      <p class="more" data-k="more">Also: PC-style monitor view, low-FPS and hot-phone alerts, per-game profiles, a Quick Settings tile, English and Khmer.</p>
     </div>
   </section>
 
   <section class="section" id="shots" style="display:none">
     <div class="container">
-      <div class="section-heading"><h2 data-k="shots"></h2></div>
+      <div class="section-heading"><h2 data-k="shots">Screenshots</h2></div>
       <div class="gal">
         <img src="shot-home.jpg" alt="Home screen" onload="document.getElementById('shots').style.display='block'" onerror="this.style.display='none'">
         <img src="shot-history.jpg" alt="History graph" onload="document.getElementById('shots').style.display='block'" onerror="this.style.display='none'">
@@ -213,28 +96,34 @@ h1{letter-spacing:-1.7px}
 
   <section class="section" id="start">
     <div class="container">
-      <div class="section-heading reveal"><h2 data-k="start"></h2></div>
+      <div class="section-heading reveal"><h2 data-k="start">Get started in 3 steps</h2></div>
       <div class="steps">
         <div class="card step reveal"><div class="num">1</div><div>
-          <h3 data-k="s1t"></h3><p data-k="s1d"></p>
-          <p><a href="https://shizuku.rikka.app/" target="_blank" rel="noopener" data-k="getshz"></a></p>
+          <h3 data-k="s1t">Install and start Shizuku</h3>
+          <p data-k="s1d">Shizuku lets FPS Meter read frame data safely. Start it with Wireless debugging (Developer options).</p>
+          <p><a href="https://shizuku.rikka.app/" target="_blank" rel="noopener" data-k="getshz">Get Shizuku</a></p>
         </div></div>
         <div class="card step reveal"><div class="num">2</div><div>
-          <h3 data-k="s2t"></h3><p data-k="s2d"></p>
+          <h3 data-k="s2t">Install FPS Meter</h3>
+          <p data-k="s2d">Download the APK above and allow installs from your browser when Android asks.</p>
         </div></div>
         <div class="card step reveal"><div class="num">3</div><div>
-          <h3 data-k="s3t"></h3><p data-k="s3d"></p>
+          <h3 data-k="s3t">Press Start and play</h3>
+          <p data-k="s3d">Open FPS Meter, allow Shizuku and the overlay, press Start, then open a game you picked.</p>
         </div></div>
       </div>
-      <p class="more" data-k="restart"></p>
+      <p class="more" data-k="restart">After a phone restart, start Shizuku again.</p>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <div class="section-heading reveal"><h2 data-k="know"></h2></div>
+      <div class="section-heading reveal"><h2 data-k="know">Good to know</h2></div>
       <ul class="know reveal">
-        <li data-k="k1"></li><li data-k="k2"></li><li data-k="k3"></li><li data-k="k4"></li>
+        <li data-k="k1">FPS comes from the system's frame data and can differ slightly from other tools.</li>
+        <li data-k="k2">CPU and GPU temperature depend on your phone. Sensors that are not available are hidden.</li>
+        <li data-k="k3">Some games may not report frames. FPS Meter measures only the apps you choose.</li>
+        <li data-k="k4">The app uses the internet only to check for updates. Only install APK files from sources you trust.</li>
       </ul>
     </div>
   </section>
@@ -242,9 +131,9 @@ h1{letter-spacing:-1.7px}
   <section class="section" id="about">
     <div class="container">
       <div class="cta reveal">
-        <h2 data-k="ctaT"></h2>
-        <p data-k="ctaD"></p>
-        <a class="button primary" href="https://github.com/ahyakonbong5-create/Fps-meter/releases" data-k="ctaB"></a>
+        <h2 data-k="ctaT">Ready to see your real FPS?</h2>
+        <p data-k="ctaD">Download the latest APK, or visit the repository for source code and release notes.</p>
+        <a class="button primary" href="https://github.com/ahyakonbong5-create/Fps-meter/releases" data-k="ctaB">Explore Releases →</a>
       </div>
     </div>
   </section>
@@ -252,388 +141,16 @@ h1{letter-spacing:-1.7px}
 
 <footer>
   <div class="container footer-inner">
-    <span>© <span id="year"></span> FPS Meter</span>
+    <span>© <span id="year">2026</span> FPS Meter</span>
     <span>
-      <a href="privacy.html" data-k="priv"></a> ·
-      <span data-k="foot"></span> ·
+      <a href="privacy.html" data-k="priv">Privacy</a> ·
+      <span data-k="foot">Independent project. Not affiliated with Google, Android or Shizuku.</span> ·
       Open-source project ·
       <a href="https://github.com/ahyakonbong5-create/Fps-meter">GitHub Repository</a>
     </span>
   </div>
 </footer>
 
-<script>
-var REPO="ahyakonbong5-create/Fps-meter";
-var T={
-en:{nFeat:"Features",nStart:"Get started",src:"View Source ↗",badge:"⚡ BUILT FOR MOBILE GAMERS",h1a:"Know Your",h1b:"Gaming FPS.",
-lead:"FPS Meter shows your game's real frame rate on top of the game, then helps you understand stutter, heat and smoothness after you play.",
-dl:"↓ Download FPS Meter",req:"Android 8.0+ · Needs Shizuku · No ads",
-feat:"Built for Your Gaming Sessions",featSub:"Real tools to understand your phone's gaming performance.",
-f1t:"Live FPS overlay",f1d:"A draggable overlay with min / avg / max, colour by FPS level and a small graph.",
-f2t:"1% low and frame time",f2d:"See stutter, not just the average FPS.",
-f3t:"Session history",f3d:"Every game session is saved with a graph you can open later.",
-f4t:"Heat analysis",f4d:"Compare FPS with temperature to see if heat is slowing your game.",
-f5t:"60-second benchmark",f5d:"Get a graded report (S / A / B / C) with smoothness and temperature.",
-f6t:"Share cards",f6d:"Turn a session into a result image to send to friends.",
-more:"Also: PC-style monitor view, low-FPS and hot-phone alerts, per-game profiles, a Quick Settings tile, English and Khmer.",
-shots:"Screenshots",start:"Get started in 3 steps",
-s1t:"Install and start Shizuku",s1d:"Shizuku lets FPS Meter read frame data safely. Start it with Wireless debugging (Developer options).",getshz:"Get Shizuku",
-s2t:"Install FPS Meter",s2d:"Download the APK above and allow installs from your browser when Android asks.",
-s3t:"Press Start and play",s3d:"Open FPS Meter, allow Shizuku and the overlay, press Start, then open a game you picked.",
-restart:"After a phone restart, start Shizuku again.",
-know:"Good to know",
-k1:"FPS comes from the system's frame data and can differ slightly from other tools.",
-k2:"CPU and GPU temperature depend on your phone. Sensors that are not available are hidden.",
-k3:"Some games may not report frames. FPS Meter measures only the apps you choose.",
-k4:"The app uses the internet only to check for updates. Only install APK files from sources you trust.",
-ctaT:"Ready to see your real FPS?",ctaD:"Download the latest APK, or visit the repository for source code and release notes.",ctaB:"Explore Releases →",
-priv:"Privacy",foot:"Independent project. Not affiliated with Google, Android or Shizuku.",latest:"Latest: "},
-km:{nFeat:"មុខងារ",nStart:"ចាប់ផ្តើម",src:"មើលកូដ ↗",badge:"⚡ បង្កើតសម្រាប់អ្នកលេងហ្គេមលើទូរស័ព្ទ",h1a:"ស្គាល់",h1b:"FPS ហ្គេមរបស់អ្នក។",
-lead:"FPS Meter បង្ហាញអត្រាស៊ុមពិតនៃហ្គេមលើអេក្រង់ ហើយជួយអ្នកយល់ពីការគាំង កម្តៅ និងភាពរលូន បន្ទាប់ពីលេង។",
-dl:"↓ ទាញយក FPS Meter",req:"Android 8.0+ · ត្រូវការ Shizuku · គ្មានផ្សាយពាណិជ្ជកម្ម",
-feat:"បង្កើតសម្រាប់ការលេងរបស់អ្នក",featSub:"ឧបករណ៍ពិតដើម្បីយល់ពីសមត្ថភាពលេងហ្គេមរបស់ទូរស័ព្ទអ្នក។",
-f1t:"FPS ផ្ទាល់លើអេក្រង់",f1d:"ផ្ទាំងអូសបានដែលបង្ហាញ min <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#080914">
-<meta name="google-site-verification" content="eZuJ8NrY7YmYtecvzqcrrQZqKAxhl2y6fu5FxsQAZ-A">
-<title>FPS Meter - Android Gaming Performance Monitor</title>
-<meta name="description" content="FPS Meter shows your game's real FPS on Android, with 1% low, heat analysis, a 60-second benchmark and session history.">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://ahyakonbong5-create.github.io/Fps-meter/">
-<meta property="og:title" content="FPS Meter - Android Gaming Performance Monitor">
-<meta property="og:description" content="Real FPS overlay for Android games, with 1% low, heat analysis and a 60-second benchmark.">
-<meta property="og:url" content="https://ahyakonbong5-create.github.io/Fps-meter/">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="FPS Meter">
-<style>
-body{position:relative;isolation:isolate}
-body::before{content:"";position:fixed;inset:-50%;z-index:-1;pointer-events:none;background:radial-gradient(circle at 25% 30%,#8b5cf633 0,transparent 28%),radial-gradient(circle at 75% 60%,#00e5ff25 0,transparent 30%),radial-gradient(circle at 50% 85%,#ff39d415 0,transparent 25%);animation:neonDrift 12s ease-in-out infinite alternate}
-body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.16;background-image:linear-gradient(#ffffff0b 1px,transparent 1px),linear-gradient(90deg,#ffffff0b 1px,transparent 1px);background-size:38px 38px;mask-image:linear-gradient(to bottom,black,transparent 90%)}
-.logo{animation:logoPulse 3s ease-in-out infinite}
-.badge{box-shadow:0 0 22px #9b6bff18;animation:badgeGlow 3s ease-in-out infinite}
-.gradient-text{background-size:200% auto;animation:gradientFlow 5s linear infinite}
-.device-wrap{position:relative}
-.device-wrap::before{content:"";position:absolute;width:250px;height:250px;border-radius:50%;background:#8b5cf62b;filter:blur(65px);animation:auraPulse 4s ease-in-out infinite;pointer-events:none}
-.device{position:relative;z-index:1;transition:box-shadow .35s ease;will-change:transform}
-.device:hover{box-shadow:0 35px 100px #000a,0 0 45px #50e8ff30,0 0 85px #9b6bff30}
-.fps-number{animation:fpsGlow 2.5s ease-in-out infinite}
-.bar{transform-origin:bottom;animation:grow 1s ease-out both,barPulse 2s ease-in-out infinite alternate}
-.bar:nth-child(2n){animation-delay:.15s,.3s}
-.bar:nth-child(3n){animation-delay:.3s,.6s}
-.card{position:relative;overflow:hidden;isolation:isolate}
-.card::before{content:"";position:absolute;inset:0;z-index:-1;opacity:0;background:linear-gradient(120deg,transparent 15%,#50e8ff12 50%,transparent 85%);transform:translateX(-100%);transition:opacity .3s}
-.card:hover::before{opacity:1;animation:cardShine .8s ease}
-.card:hover .icon{transform:translateY(-3px) scale(1.06);box-shadow:0 0 24px #9b6bff25}
-.icon{transition:transform .25s,box-shadow .25s}
-.primary{box-shadow:0 0 25px #50e8ff20;transition:transform .2s,box-shadow .2s,filter .2s}
-.primary:hover{box-shadow:0 0 25px #50e8ff40,0 0 45px #9b6bff30;filter:brightness(1.12)}
-.cta{position:relative;overflow:hidden}
-.cta::before{content:"";position:absolute;top:-100%;left:-50%;width:200%;height:300%;pointer-events:none;background:linear-gradient(115deg,transparent 40%,#ffffff08 50%,transparent 60%);animation:ctaShine 7s linear infinite}
-@keyframes neonDrift{from{transform:translate3d(-2%,-1%,0) rotate(0deg)}to{transform:translate3d(2%,1%,0) rotate(8deg)}}
-@keyframes logoPulse{0%,100%{box-shadow:0 0 18px #9065ff35}50%{box-shadow:0 0 32px #50e8ff65}}
-@keyframes badgeGlow{0%,100%{border-color:#9b6bff66}50%{border-color:#50e8ff99}}
-@keyframes gradientFlow{to{background-position:200% center}}
-@keyframes auraPulse{0%,100%{transform:scale(.85);opacity:.55}50%{transform:scale(1.15);opacity:1}}
-@keyframes fpsGlow{0%,100%{text-shadow:0 0 18px #50e8ff35}50%{text-shadow:0 0 25px #50e8ff90,0 0 45px #50e8ff35}}
-@keyframes barPulse{from{filter:brightness(.75)}to{filter:brightness(1.35)}}
-@keyframes cardShine{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
-@keyframes ctaShine{from{transform:translateX(-35%)}to{transform:translateX(35%)}}
-@media (max-width:760px){body::after{background-size:30px 30px}.device-wrap::before{filter:blur(45px)}}
-@media (prefers-reduced-motion:reduce){body::before,body::after,.logo,.badge,.gradient-text,.device-wrap::before,.fps-number,.bar,.cta::before{animation:none!important}}
-
-:root{color-scheme:dark;--bg:#080914;--panel:#111426;--text:#f5f6ff;--muted:#a6abc4;--purple:#9b6bff;--cyan:#50e8ff;--border:rgba(255,255,255,.1)}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Khmer",sans-serif;color:var(--text);background:radial-gradient(ellipse at 15% 10%,#39216a55,transparent 40%),radial-gradient(ellipse at 85% 35%,#075c7350,transparent 38%),var(--bg);line-height:1.6;overflow-x:hidden}
-a{color:inherit;text-decoration:none}
-.container{width:min(1100px,90%);margin:auto}
-.navbar{position:sticky;top:0;z-index:10;backdrop-filter:blur(18px);background:#080914d9;border-bottom:1px solid var(--border)}
-.nav-inner{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:14px}
-.brand{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:850;letter-spacing:-.5px}
-.logo{width:40px;height:40px;display:grid;place-items:center;border-radius:13px;background:linear-gradient(135deg,var(--purple),#5144e9);box-shadow:0 0 25px #9065ff50}
-.nav-links{display:flex;align-items:center;gap:22px;color:var(--muted);font-size:14px}
-.nav-links a:hover{color:var(--cyan)}
-.lang{display:flex}
-.lang button{background:#ffffff0d;border:1px solid var(--border);color:var(--muted);padding:7px 12px;font:inherit;font-size:13px;cursor:pointer}
-.lang button:first-child{border-radius:999px 0 0 999px}
-.lang button:last-child{border-radius:0 999px 999px 0;border-left:0}
-.lang button.on{background:linear-gradient(100deg,var(--cyan),#9e8aff);color:#080914;border-color:transparent;font-weight:800}
-.button{display:inline-flex;justify-content:center;align-items:center;gap:8px;min-height:48px;padding:12px 20px;border:1px solid var(--border);border-radius:14px;font-weight:750;transition:transform .2s,box-shadow .2s}
-.button:hover{transform:translateY(-3px);box-shadow:0 10px 35px #8e65ff35}
-.primary{color:#080914;background:linear-gradient(100deg,var(--cyan),#9e8aff);border:none}
-.hero{min-height:590px;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:45px;padding-top:70px;padding-bottom:70px}
-.badge{display:inline-flex;align-items:center;gap:8px;border:1px solid #9b6bff66;background:#9b6bff15;color:#c6b3ff;border-radius:999px;padding:7px 13px;font-size:12px;font-weight:750}
-h1{font-size:clamp(42px,6vw,72px);line-height:1.05;letter-spacing:-2.8px;margin:22px 0}
-.gradient-text{background:linear-gradient(90deg,var(--cyan),#a68aff,#ff9be8);-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero-copy{max-width:560px;color:var(--muted);font-size:17px}
-.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
-.note{margin-top:16px;font-size:12px;color:var(--muted)}
-.device-wrap{display:grid;place-items:center;perspective:1000px}
-.device{width:min(300px,85%);min-height:390px;padding:15px;border-radius:34px;border:1px solid #ffffff30;background:linear-gradient(145deg,#272b46,#101221 55%);box-shadow:0 30px 90px #0008,0 0 70px #8e65ff25;transform:rotateY(-9deg) rotateX(4deg);animation:float 5s ease-in-out infinite}
-.screen{min-height:360px;border-radius:23px;padding:23px 17px;background:radial-gradient(circle at top right,#2a2363,transparent 45%),#080a17;border:1px solid #ffffff13}
-.screen-label{color:var(--muted);font-size:12px}
-.fps-number{font-size:70px;font-weight:900;line-height:1.2;letter-spacing:-3px;margin-top:24px;color:var(--cyan);text-shadow:0 0 30px #50e8ff55}
-.fps-caption{color:var(--muted);font-size:12px}
-.chart{height:90px;display:flex;align-items:end;gap:5px;margin-top:25px;border-bottom:1px solid #ffffff20}
-.bar{flex:1;height:var(--h);border-radius:5px 5px 0 0;background:linear-gradient(to top,#6c52ff,var(--cyan));animation:grow 1s ease-out both}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
-.stat{padding:12px;border-radius:12px;background:#ffffff08;border:1px solid #ffffff10}
-.stat strong{display:block;font-size:17px}
-.stat span{font-size:11px;color:var(--muted)}
-.section{padding:65px 0}
-.section-heading{text-align:center;max-width:650px;margin:0 auto 35px}
-.section-heading h2{font-size:clamp(29px,4vw,42px);line-height:1.2;margin:0 0 12px}
-.section-heading p{color:var(--muted)}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.card{padding:25px;background:linear-gradient(145deg,#171a30,#0e1020);border:1px solid var(--border);border-radius:20px;transition:transform .25s,border-color .25s}
-.card:hover{transform:translateY(-6px);border-color:#9b6bff99}
-.icon{width:48px;height:48px;display:grid;place-items:center;border-radius:15px;background:#9b6bff20;font-size:23px;margin-bottom:18px}
-.card h3{margin:0 0 9px}
-.card p{color:var(--muted);font-size:14px;margin-bottom:0}
-.more{text-align:center;color:var(--muted);margin:24px auto 0;max-width:680px;font-size:14px}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.step{display:flex;gap:14px}
-.num{flex:none;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-weight:850;color:#080914;background:linear-gradient(135deg,var(--cyan),#9e8aff)}
-.step h3{margin:0 0 6px}
-.step p{margin:0 0 6px}
-.step a{color:var(--cyan)}
-.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px}
-.gal img{width:100%;border-radius:18px;border:1px solid var(--border)}
-.know{max-width:720px;margin:0 auto;padding-left:22px;color:var(--muted)}
-.know li{margin:8px 0}
-.cta{text-align:center;padding:45px 25px;border:1px solid #9b6bff50;border-radius:25px;background:radial-gradient(ellipse at top,#603ba333,transparent 70%),#111326}
-.cta h2{font-size:clamp(28px,4vw,42px);margin:0 0 12px}
-.cta p{color:var(--muted);margin-bottom:25px}
-footer{margin-top:60px;border-top:1px solid var(--border);padding:28px 0;color:var(--muted);font-size:13px}
-.footer-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
-.footer-inner a:hover{color:var(--cyan)}
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s,transform .7s}
-.reveal.visible{opacity:1;transform:translateY(0)}
-@keyframes float{0%,100%{transform:translateY(0) rotateY(-9deg) rotateX(4deg)}50%{transform:translateY(-12px) rotateY(-5deg) rotateX(2deg)}}
-@keyframes grow{from{height:0}to{height:var(--h)}}
-@media (max-width:760px){
-.nav-links{gap:12px;font-size:12px}
-.nav-links .hide-mobile{display:none}
-.hero{grid-template-columns:1fr;text-align:center;padding-top:55px}
-.hero-copy{margin:auto}
-.actions{justify-content:center}
-.device{width:270px}
-.cards,.steps{grid-template-columns:1fr}
-h1{letter-spacing:-1.7px}
-}
-@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
-</style>
-</head>
-
-<body>
-<header class="navbar">
-  <div class="container nav-inner">
-    <a class="brand" href="#home" aria-label="FPS Meter home"><span class="logo">⚡</span><span>FPS METER</span></a>
-    <nav class="nav-links" aria-label="Main navigation">
-      <a class="hide-mobile" href="#features" data-k="nFeat"></a>
-      <a class="hide-mobile" href="#start" data-k="nStart"></a>
-      <a href="https://github.com/ahyakonbong5-create/Fps-meter" target="_blank" rel="noopener">GitHub ↗</a>
-      <div class="lang"><button data-l="en">EN</button><button data-l="km">ខ្មែរ</button></div>
-    </nav>
-  </div>
-</header>
-
-<main>
-  <section class="container hero" id="home">
-    <div>
-      <span class="badge" data-k="badge"></span>
-      <h1><span data-k="h1a"></span><br><span class="gradient-text" data-k="h1b"></span></h1>
-      <p class="hero-copy" data-k="lead"></p>
-      <div class="actions">
-        <a class="button primary" id="dl" href="https://github.com/ahyakonbong5-create/Fps-meter/releases" data-k="dl"></a>
-        <a class="button" href="https://github.com/ahyakonbong5-create/Fps-meter" target="_blank" rel="noopener" data-k="src"></a>
-      </div>
-      <p class="note"><span data-k="req"></span> <span id="ver"></span></p>
-    </div>
-
-    <div class="device-wrap" aria-label="Illustration of an FPS monitoring screen">
-      <div class="device">
-        <div class="screen">
-          <div class="screen-label">FPS METER / MONITOR</div>
-          <div class="fps-number">60</div>
-          <div class="fps-caption">FPS · Illustrative preview</div>
-          <div class="chart" aria-hidden="true">
-            <span class="bar" style="--h:45%"></span><span class="bar" style="--h:67%"></span>
-            <span class="bar" style="--h:54%"></span><span class="bar" style="--h:82%"></span>
-            <span class="bar" style="--h:64%"></span><span class="bar" style="--h:93%"></span>
-            <span class="bar" style="--h:72%"></span><span class="bar" style="--h:87%"></span>
-            <span class="bar" style="--h:61%"></span><span class="bar" style="--h:78%"></span>
-          </div>
-          <div class="stats">
-            <div class="stat"><strong>Real-time*</strong><span>FPS monitoring</span></div>
-            <div class="stat"><strong>Android</strong><span>Mobile platform</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="features">
-    <div class="container">
-      <div class="section-heading reveal">
-        <h2 data-k="feat"></h2>
-        <p data-k="featSub"></p>
-      </div>
-      <div class="cards">
-        <article class="card reveal"><div class="icon">📊</div><h3 data-k="f1t"></h3><p data-k="f1d"></p></article>
-        <article class="card reveal"><div class="icon">⏱️</div><h3 data-k="f2t"></h3><p data-k="f2d"></p></article>
-        <article class="card reveal"><div class="icon">🕘</div><h3 data-k="f3t"></h3><p data-k="f3d"></p></article>
-        <article class="card reveal"><div class="icon">🌡️</div><h3 data-k="f4t"></h3><p data-k="f4d"></p></article>
-        <article class="card reveal"><div class="icon">🏆</div><h3 data-k="f5t"></h3><p data-k="f5d"></p></article>
-        <article class="card reveal"><div class="icon">🖼️</div><h3 data-k="f6t"></h3><p data-k="f6d"></p></article>
-      </div>
-      <p class="more" data-k="more"></p>
-    </div>
-  </section>
-
-  <section class="section" id="shots" style="display:none">
-    <div class="container">
-      <div class="section-heading"><h2 data-k="shots"></h2></div>
-      <div class="gal">
-        <img src="shot-home.jpg" alt="Home screen" onload="document.getElementById('shots').style.display='block'" onerror="this.style.display='none'">
-        <img src="shot-history.jpg" alt="History graph" onload="document.getElementById('shots').style.display='block'" onerror="this.style.display='none'">
-        <img src="shot-card.jpg" alt="Result card" onload="document.getElementById('shots').style.display='block'" onerror="this.style.display='none'">
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="start">
-    <div class="container">
-      <div class="section-heading reveal"><h2 data-k="start"></h2></div>
-      <div class="steps">
-        <div class="card step reveal"><div class="num">1</div><div>
-          <h3 data-k="s1t"></h3><p data-k="s1d"></p>
-          <p><a href="https://shizuku.rikka.app/" target="_blank" rel="noopener" data-k="getshz"></a></p>
-        </div></div>
-        <div class="card step reveal"><div class="num">2</div><div>
-          <h3 data-k="s2t"></h3><p data-k="s2d"></p>
-        </div></div>
-        <div class="card step reveal"><div class="num">3</div><div>
-          <h3 data-k="s3t"></h3><p data-k="s3d"></p>
-        </div></div>
-      </div>
-      <p class="more" data-k="restart"></p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section-heading reveal"><h2 data-k="know"></h2></div>
-      <ul class="know reveal">
-        <li data-k="k1"></li><li data-k="k2"></li><li data-k="k3"></li><li data-k="k4"></li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="section" id="about">
-    <div class="container">
-      <div class="cta reveal">
-        <h2 data-k="ctaT"></h2>
-        <p data-k="ctaD"></p>
-        <a class="button primary" href="https://github.com/ahyakonbong5-create/Fps-meter/releases" data-k="ctaB"></a>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div class="container footer-inner">
-    <span>© <span id="year"></span> FPS Meter</span>
-    <span>
-      <a href="privacy.html" data-k="priv"></a> ·
-      <span data-k="foot"></span> ·
-      Open-source project ·
-      <a href="https://github.com/ahyakonbong5-create/Fps-meter">GitHub Repository</a>
-    </span>
-  </div>
-</footer>
-
-<script>
-var REPO="ahyakonbong5-create/Fps-meter";
-var T={
-en:{nFeat:"Features",nStart:"Get started",src:"View Source ↗",badge:"⚡ BUILT FOR MOBILE GAMERS",h1a:"Know Your",h1b:"Gaming FPS.",
-lead:"FPS Meter shows your game's real frame rate on top of the game, then helps you understand stutter, heat and smoothness after you play.",
-dl:"↓ Download FPS Meter",req:"Android 8.0+ · Needs Shizuku · No ads",
-feat:"Built for Your Gaming Sessions",featSub:"Real tools to understand your phone's gaming performance.",
-f1t:"Live FPS overlay",f1d:"A draggable overlay with min / avg / max, colour by FPS level and a small graph.",
-f2t:"1% low and frame time",f2d:"See stutter, not just the average FPS.",
-f3t:"Session history",f3d:"Every game session is saved with a graph you can open later.",
-f4t:"Heat analysis",f4d:"Compare FPS with temperature to see if heat is slowing your game.",
-f5t:"60-second benchmark",f5d:"Get a graded report (S / A / B / C) with smoothness and temperature.",
-f6t:"Share cards",f6d:"Turn a session into a result image to send to friends.",
-more:"Also: PC-style monitor view, low-FPS and hot-phone alerts, per-game profiles, a Quick Settings tile, English and Khmer.",
-shots:"Screenshots",start:"Get started in 3 steps",
-s1t:"Install and start Shizuku",s1d:"Shizuku lets FPS Meter read frame data safely. Start it with Wireless debugging (Developer options).",getshz:"Get Shizuku",
-s2t:"Install FPS Meter",s2d:"Download the APK above and allow installs from your browser when Android asks.",
-s3t:"Press Start and play",s3d:"Open FPS Meter, allow Shizuku and the overlay, press Start, then open a game you picked.",
-restart:"After a phone restart, start Shizuku again.",
-know:"Good to know",
-k1:"FPS comes from the system's frame data and can differ slightly from other tools.",
-k2:"CPU and GPU temperature depend on your phone. Sensors that are not available are hidden.",
-k3:"Some games may not report frames. FPS Meter measures only the apps you choose.",
-k4:"The app uses the internet only to check for updates. Only install APK files from sources you trust.",
-ctaT:"Ready to see your real FPS?",ctaD:"Download the latest APK, or visit the repository for source code and release notes.",ctaB:"Explore Releases →",
-priv:"Privacy",foot:"Independent project. Not affiliated with Google, Android or Shizuku.",latest:"Latest: "},
-km:{nFeat:"មុខងារ",nStart:"ចាប់ផ្តើម",src:"មើលកូដ ↗",badge:"⚡ បង្កើតសម្រាប់អ្នកលេងហ្គេមលើទូរស័ព្ទ",h1a:"ស្គាល់",h1b:"FPS ហ្គេមរបស់អ្នក។",
-lead:"FPS Meter បង្ហាញអត្រាស៊ុមពិតនៃហ្គេមលើអេក្រង់ ហើយជួយអ្នកយល់ពីការគាំង កម្តៅ និងភាពរលូន បន្ទាប់ពីលេង។",
-dl:"↓ ទាញយក FPS Meter",req:"Android 8.0+ · ត្រូវការ Shizuku · គ្មានផ្សាយពាណិជ្ជកម្ម",
-feat:"បង្កើតសម្រាប់ការលេងរបស់អ្នក",featSub:"ឧបករណ៍ពិតដើម្បីយល់ពីសមត្ថភាពលេងហ្គេមរបស់ទូរស័ព្ទអ្នក។",
-f1t:"FPS ផ្ទាល់លើអេក្រង់",f1d:"ផ្ទាំងអូសបានដែលបង្ហាញ min / avg / max ពណ៌តាមកម្រិត FPS និងក្រាហ្វតូច។",
-
-f2t:"1% low និងរយៈពេលស៊ុម",f2d:"មើលការគាំង មិនមែនតែ FPS មធ្យមទេ។",
-f3t:"ប្រវត្តិការលេង",f3d:"រាល់ការលេងត្រូវបានរក្សាទុកជាមួយក្រាហ្វដែលអាចបើកមើលក្រោយ។",
-f4t:"ការវិភាគកម្តៅ",f4d:"ប្រៀបធៀប FPS ជាមួយសីតុណ្ហភាព ដើម្បីដឹងថាកម្តៅធ្វើឱ្យហ្គេមយឺតឬអត់។",
-f5t:"Benchmark 60 វិនាទី",f5d:"ទទួលរបាយការណ៍មានពិន្ទុ (S / A / B / C) ភាពរលូន និងសីតុណ្ហភាព។",
-f6t:"បណ្ណចែករំលែក",f6d:"បម្លែងការលេងមួយទៅជារូបលទ្ធផលដើម្បីផ្ញើទៅមិត្តភក្តិ។",
-more:"ក្រៅពីនេះ៖ ទិដ្ឋភាព Monitor ដូចកុំព្យូទ័រ ការជូនដំណឹងពេល FPS ទាប ឬទូរស័ព្ទក្តៅ profile តាមហ្គេម ប៊ូតុង Quick Settings និងភាសាអង់គ្លេស/ខ្មែរ។",
-shots:"រូបថតអេក្រង់",start:"ចាប់ផ្តើមក្នុង ៣ ជំហាន",
-s1t:"ដំឡើង និងបើក Shizuku",s1d:"Shizuku អនុញ្ញាតឱ្យ FPS Meter អានទិន្នន័យស៊ុមដោយសុវត្ថិភាព។ បើកវាតាម Wireless debugging (Developer options)។",getshz:"ទាញយក Shizuku",
-s2t:"ដំឡើង FPS Meter",s2d:"ទាញយក APK ខាងលើ ហើយអនុញ្ញាតការដំឡើងពីកម្មវិធីរុករក ពេល Android សួរ។",
-s3t:"ចុច Start ហើយលេង",s3d:"បើក FPS Meter អនុញ្ញាត Shizuku និង overlay ចុច Start រួចបើកហ្គេមដែលអ្នកបានជ្រើស។",
-restart:"បន្ទាប់ពីបើកទូរស័ព្ទឡើងវិញ ត្រូវបើក Shizuku ម្តងទៀត។",
-know:"ចំណុចគួរដឹង",
-k1:"FPS មកពីទិន្នន័យស៊ុមរបស់ប្រព័ន្ធ ហើយអាចខុសបន្តិចពីឧបករណ៍ផ្សេង។",
-k2:"សីតុណ្ហភាព CPU និង GPU អាស្រ័យលើទូរស័ព្ទអ្នក។ sensor ណាដែលអានមិនបាន នឹងត្រូវលាក់។",
-k3:"ហ្គេមមួយចំនួនអាចមិនរាយការណ៍ស៊ុម។ FPS Meter វាស់តែ app ដែលអ្នកជ្រើស។",
-k4:"app ប្រើអ៊ីនធឺណិតតែដើម្បីពិនិត្យការអាប់ដេត។ ដំឡើងតែ APK ពីប្រភពដែលអ្នកទុកចិត្ត។",
-ctaT:"ត្រៀមមើល FPS ពិតរបស់អ្នកឬនៅ?",ctaD:"ទាញយក APK ចុងក្រោយ ឬចូលមើល repository សម្រាប់កូដ និងកំណត់ចំណាំកំណែ។",ctaB:"មើលកំណែទាំងអស់ →",
-priv:"ឯកជនភាព",foot:"គម្រោងឯករាជ្យ។ មិនពាក់ព័ន្ធនឹង Google, Android ឬ Shizuku។",latest:"កំណែចុងក្រោយ៖ "}
-};
-var lang="en",latest="";
-try{lang=localStorage.getItem("lang")||(((navigator.language||"").toLowerCase().indexOf("km")===0)?"km":"en");}catch(e){}
-function el(i){return document.getElementById(i)}
-function apply(){
-  document.documentElement.lang=lang;
-  document.querySelectorAll("[data-k]").forEach(function(e){var v=T[lang][e.getAttribute("data-k")];if(v)e.textContent=v;});
-  document.querySelectorAll(".lang button").forEach(function(b){b.className=(b.getAttribute("data-l")===lang)?"on":"";});
-  el("ver").textContent=latest?"· "+T[lang].latest+latest:"";
-}
-document.querySelectorAll(".lang button").forEach(function(b){
-  b.onclick=function(){lang=b.getAttribute("data-l");try{localStorage.setItem("lang",lang);}catch(e){}apply();};
-});
-apply();
-fetch("https://api.github.com/repos/"+REPO+"/releases/latest").then(function(r){return r.ok?r.json():null;}).then(function(j){
-  if(!j)return;
-  var a=(j.assets||[]).filter(function(x){return /\.apk$/i.test(x.name);})[0];
-  if(a)el("dl").href=a.browser_download_url;
-  latest=j.tag_name||"";apply();
-}).catch(function(){});
-
-el("year").textContent=new Date().getFullYear();
-var revealObserver=new IntersectionObserver(function(entries){
-  entries.forEach(function(entry){
-    if(entry.isIntersecting){entry.target.classList.add("visible");revealObserver.unobserve(entry.target);}
-  });
-},{threshold:0.12});
-document.querySelectorAll(".reveal").forEach(function(e){revealObserver.observe(e);});
-</script>
+<script src="app.js"></script>
 </body>
 </html>
