@@ -2,141 +2,578 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#090b12">
-<meta name="description" content="FPS Meter for Android. Monitor frame rate, CPU, memory, and device temperature.">
-<title>FPS Meter — Android Performance Monitor</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080914">
+<meta name="description" content="FPS Meter — Android gaming performance monitor.">
+<title>FPS Meter | Gaming Performance</title>
+
 <style>
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  background:#090b12;
-  color:#f5f7ff;
+:root {
+  --bg: #080914;
+  --panel: rgba(22, 23, 43, .75);
+  --purple: #9c7bff;
+  --blue: #55d8ff;
+  --text: #f7f7ff;
+  --muted: #a5aac5;
+  --border: rgba(164, 144, 255, .19);
 }
-header{
-  padding:20px;
-  border-bottom:1px solid #252a3b;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--text);
+  background: var(--bg);
+  font-family: system-ui, Arial, sans-serif;
+  overflow-x: hidden;
 }
-.logo{font-size:23px;font-weight:800;color:#8c7bff}
-.badge{color:#a6a9bd;font-size:12px}
-main{max-width:900px;margin:auto;padding:28px 20px}
-.hero{text-align:center;padding:50px 0 35px}
-.icon{
-  width:86px;height:86px;border-radius:23px;
-  margin:auto auto 22px;
-  background:linear-gradient(135deg,#8c7bff,#40d9c2);
-  display:grid;place-items:center;
-  font-size:35px;font-weight:900;color:#090b12;
-  box-shadow:0 0 45px #7065ff30;
+a { color: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+
+#particles {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  opacity: .6;
 }
-h1{font-size:clamp(32px,8vw,54px);margin:0 0 16px}
-h1 span{color:#8c7bff}
-p{color:#aeb4c8;line-height:1.7}
-.hero p{max-width:600px;margin:0 auto 25px}
-.button{
-  display:inline-block;padding:14px 24px;border-radius:12px;
-  background:#8c7bff;color:white;text-decoration:none;
-  font-weight:bold;margin:6px;border:1px solid #a79aff;
+.aurora {
+  position: fixed;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  filter: blur(110px);
+  opacity: .16;
+  pointer-events: none;
+  z-index: -1;
+  animation: aurora 12s ease-in-out infinite alternate;
 }
-.button.secondary{background:#171b29;border-color:#333950}
-.note{font-size:12px;color:#8189a3;margin-top:15px}
-h2{font-size:25px;margin-top:45px}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-.card{
-  background:#121624;border:1px solid #272d42;
-  padding:20px;border-radius:16px;
+.aurora.one { background: #764dff; top: -160px; left: -130px; }
+.aurora.two {
+  background: #00cfff;
+  right: -180px;
+  top: 35%;
+  animation-delay: -6s;
 }
-.card .emoji{font-size:26px}
-.card h3{margin:12px 0 5px}
-.card p{font-size:14px;margin:0}
-footer{
-  text-align:center;border-top:1px solid #252a3b;
-  padding:25px 15px;color:#858ca5;font-size:13px;
+@keyframes aurora {
+  from { transform: translate(0,0) scale(.9); }
+  to { transform: translate(55px,45px) scale(1.15); }
 }
-@media(min-width:650px){.grid{grid-template-columns:repeat(3,1fr)}}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(8,9,20,.78);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+}
+.nav {
+  max-width: 1100px;
+  margin: auto;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+.logo {
+  font-size: 19px;
+  font-weight: 950;
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+.logo span { color: var(--purple); }
+nav { display: flex; align-items: center; gap: 19px; }
+nav a {
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 13px;
+  transition: color .2s;
+}
+nav a:hover { color: white; }
+.lang {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 9px 12px;
+  background: #19172c;
+  color: white;
+  font-weight: 750;
+}
+
+main { max-width: 1060px; margin: auto; padding: 20px; }
+.hero { text-align: center; padding: 76px 0 55px; }
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  background: rgba(29,25,54,.7);
+  padding: 9px 14px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  color: #d5caff;
+}
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #55f2c0;
+  box-shadow: 0 0 13px #55f2c0;
+  animation: blink 1.8s infinite;
+}
+@keyframes blink {
+  50% { opacity: .35; box-shadow: 0 0 3px #55f2c0; }
+}
+.app-icon {
+  width: 100px;
+  height: 100px;
+  margin: 28px auto;
+  border-radius: 29px;
+  display: grid;
+  place-items: center;
+  font-size: 28px;
+  font-weight: 1000;
+  color: #090914;
+  background: linear-gradient(135deg, var(--purple), var(--blue));
+  box-shadow: 0 0 45px #9275ff40;
+  animation: float 4s ease-in-out infinite;
+  transform: translateZ(0);
+}
+@keyframes float {
+  0%,100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-10px) rotate(3deg); }
+}
+h1 {
+  font-size: clamp(37px, 8vw, 70px);
+  line-height: 1.08;
+  letter-spacing: -2px;
+  margin: 0;
+}
+.gradient {
+  background: linear-gradient(100deg,#b6a1ff,#63e6ff,#b6a1ff);
+  background-size: 200% auto;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: gradient 5s linear infinite;
+}
+@keyframes gradient { to { background-position: 200% center; } }
+.hero > p {
+  max-width: 630px;
+  margin: 23px auto;
+  color: var(--muted);
+  line-height: 1.85;
+  font-size: 15px;
+}
+.actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 27px;
+}
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  text-decoration: none;
+  border-radius: 13px;
+  padding: 14px 20px;
+  font-weight: 850;
+  font-size: 13px;
+  border: 1px solid transparent;
+  transition: transform .25s, box-shadow .25s, border-color .25s;
+}
+.btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 35px #9175ff26;
+}
+.primary {
+  color: white;
+  background: linear-gradient(110deg,#9474ff,#6c65f5);
+}
+.secondary {
+  background: rgba(22,24,44,.85);
+  border-color: var(--border);
+}
+.note { color: #777e9d; font-size: 11px; margin-top: 19px; }
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 13px;
+  margin: 5px 0 70px;
+}
+.stat {
+  text-align: center;
+  padding: 23px 8px;
+  border-radius: 17px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  backdrop-filter: blur(10px);
+  transition: transform .25s, border-color .25s;
+}
+.stat:hover { transform: translateY(-5px); border-color: #8f7cff; }
+.stat strong { display: block; font-size: 21px; color: var(--blue); }
+.stat span { display: block; margin-top: 7px; font-size: 10px; color: var(--muted); letter-spacing: 1px; }
+
+section { margin: 65px 0; }
+.section-head { margin-bottom: 24px; }
+.eyebrow { color: var(--blue); font-size: 11px; font-weight: 900; letter-spacing: 2px; }
+h2 { font-size: clamp(27px,5vw,38px); margin: 9px 0; letter-spacing: -.8px; }
+.section-head p { color: var(--muted); line-height: 1.7; }
+
+.grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 15px; }
+.card {
+  position: relative;
+  padding: 23px;
+  border: 1px solid var(--border);
+  border-radius: 19px;
+  background: linear-gradient(145deg,rgba(25,26,48,.88),rgba(12,14,28,.91));
+  overflow: hidden;
+  transition: transform .3s, border-color .3s, box-shadow .3s;
+}
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(125deg,transparent,rgba(153,125,255,.09),transparent);
+  transform: translateX(-100%);
+  transition: transform .7s;
+}
+.card:hover::before { transform: translateX(100%); }
+.card:hover {
+  transform: translateY(-7px);
+  border-color: #8272d8;
+  box-shadow: 0 15px 35px #0004;
+}
+.emoji { font-size: 29px; }
+.card h3 { margin: 15px 0 7px; font-size: 16px; }
+.card p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.8; }
+
+.download-box {
+  padding: clamp(24px,5vw,43px);
+  border-radius: 25px;
+  border: 1px solid #51447d;
+  background: radial-gradient(ellipse at 100% 0%,#583cb044,transparent 55%),rgba(17,18,35,.93);
+  box-shadow: 0 20px 70px #0002;
+}
+.download-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+}
+.download-row p { color: var(--muted); line-height: 1.8; }
+.version {
+  display: inline-block;
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  font-size: 11px;
+  color: #c9c1f8;
+}
+.steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-top: 30px; }
+.step { border-top: 1px solid var(--border); padding-top: 15px; }
+.step strong { font-size: 13px; }
+.step p { font-size: 12px; line-height: 1.8; color: var(--muted); }
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 30px 15px;
+  text-align: center;
+  background: #08091488;
+}
+footer p { font-size: 12px; color: var(--muted); }
+footer a { color: #b7a7ff; text-decoration: none; }
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media(max-width:700px) {
+  main { padding: 15px; }
+  .nav { padding: 13px 15px; }
+  nav { gap: 11px; }
+  nav a { font-size: 11px; }
+  .logo { font-size: 16px; }
+  .hero { padding: 58px 0 40px; }
+  .grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 11px; }
+  .card { padding: 17px; }
+  .stats { gap: 8px; margin-bottom: 50px; }
+  .stat strong { font-size: 17px; }
+  .stat span { font-size: 9px; }
+  .download-row { align-items: flex-start; flex-direction: column; }
+  .steps { grid-template-columns: 1fr; gap: 12px; }
+}
+@media(max-width:390px) {
+  nav { gap: 7px; }
+  nav a { font-size: 10px; }
+  .grid { grid-template-columns: 1fr; }
+  h1 { letter-spacing: -1.5px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
 </style>
 </head>
+
 <body>
+<canvas id="particles" aria-hidden="true"></canvas>
+<div class="aurora one"></div>
+<div class="aurora two"></div>
+
 <header>
-  <div class="logo">FPS METER</div>
-  <div class="badge">ANDROID PERFORMANCE</div>
+  <div class="nav">
+    <a class="logo" href="#">FPS <span>METER</span></a>
+    <nav>
+      <a href="#features" data-en="Features" data-km="មុខងារ">Features</a>
+      <a href="#download" data-en="Download" data-km="ទាញយក">Download</a>
+      <button class="lang" id="langBtn" type="button">ខ្មែរ</button>
+    </nav>
+  </div>
 </header>
 
 <main>
-<section class="hero">
-  <div class="icon">FPS</div>
-  <h1>Know Your <span>Performance.</span></h1>
-  <p>
-    Monitor your Android device performance with FPS tracking,
-    CPU and memory statistics, temperature monitoring,
-    and gaming session history.
-  </p>
-  <a class="button" href="#download">Get FPS Meter</a>
-  <a class="button secondary" href="#features">Explore Features</a>
-  <div class="note">Android performance monitoring · Built for gamers</div>
-</section>
+  <section class="hero">
+    <div class="pill"><span class="dot"></span>
+      <span data-en="ANDROID GAMING PERFORMANCE" data-km="តាមដានដំណើរការហ្គេម ANDROID">ANDROID GAMING PERFORMANCE</span>
+    </div>
 
-<section id="features">
-  <h2>Everything You Need</h2>
-  <div class="grid">
-    <article class="card">
-      <div class="emoji">🎮</div>
-      <h3>FPS Tracking</h3>
-      <p>Track frame-rate changes during supported gaming sessions.</p>
-    </article>
-    <article class="card">
-      <div class="emoji">⚡</div>
-      <h3>CPU Monitor</h3>
-      <p>View available processor usage statistics.</p>
-    </article>
-    <article class="card">
-      <div class="emoji">🧠</div>
-      <h3>Memory Monitor</h3>
-      <p>Check memory usage and understand device workload.</p>
-    </article>
-    <article class="card">
-      <div class="emoji">🌡️</div>
-      <h3>Temperature</h3>
-      <p>View supported device temperature readings.</p>
-    </article>
-    <article class="card">
-      <div class="emoji">📊</div>
-      <h3>Session History</h3>
-      <p>Review recorded performance sessions and statistics.</p>
-    </article>
-    <article class="card">
-      <div class="emoji">🏆</div>
-      <h3>Performance Tests</h3>
-      <p>Explore performance testing features as they become available.</p>
-    </article>
+    <div class="app-icon">FPS</div>
+
+    <h1 data-en="Know Your" data-km="ស្គាល់ពី">Know Your<br>
+      <span class="gradient" data-en="Gaming Performance." data-km="សមត្ថភាពហ្គេម។">Gaming Performance.</span>
+    </h1>
+
+    <p data-en="Monitor your Android gaming sessions with FPS tracking, CPU and memory statistics, device temperature, and performance history — all in one companion app."
+       data-km="តាមដានវគ្គលេងហ្គេម Android របស់អ្នក ជាមួយ FPS, ស្ថិតិ CPU និង RAM សីតុណ្ហភាពឧបករណ៍ និងប្រវត្តិដំណើរការ។">
+      Monitor your Android gaming sessions with FPS tracking, CPU and memory statistics, device temperature, and performance history — all in one companion app.
+    </p>
+
+    <div class="actions">
+      <a class="btn primary" href="#download" data-en="↓ Get FPS Meter" data-km="↓ ទាញយក FPS Meter">↓ Get FPS Meter</a>
+      <a class="btn secondary" href="#features" data-en="Explore Features ↘" data-km="មើលមុខងារ ↘">Explore Features ↘</a>
+    </div>
+    <div class="note" data-en="Designed for Android gamers · Lightweight · Easy to use"
+         data-km="បង្កើតសម្រាប់អ្នកលេងហ្គេម Android · ងាយស្រួលប្រើ">
+      Designed for Android gamers · Lightweight · Easy to use
+    </div>
+  </section>
+
+  <div class="stats">
+    <div class="stat"><strong>Android</strong><span data-en="PLATFORM" data-km="ប្រព័ន្ធ">PLATFORM</span></div>
+    <div class="stat"><strong>FPS +</strong><span data-en="PERFORMANCE TOOLS" data-km="ឧបករណ៍តាមដាន">PERFORMANCE TOOLS</span></div>
+    <div class="stat"><strong>v1.0</strong><span data-en="WEBSITE DESIGN" data-km="កំណែរចនា Website">WEBSITE DESIGN</span></div>
   </div>
-</section>
 
-<section id="download">
-  <h2>Get FPS Meter</h2>
-  <p>
-    The Android download will be available here when the
-    APK has been uploaded to the project releases.
-  </p>
-  <a class="button secondary"
-     href="https://github.com/ahyakonbong5-create/Fps-meter/releases">
-     View Releases
-  </a>
-  <p class="note">
-    Only install APK files from sources you trust.
-  </p>
-</section>
+  <section id="features" class="reveal">
+    <div class="section-head">
+      <div class="eyebrow" data-en="FEATURES" data-km="មុខងារ">FEATURES</div>
+      <h2 data-en="Your gaming dashboard." data-km="ផ្ទាំងតាមដានហ្គេមរបស់អ្នក។">Your gaming dashboard.</h2>
+      <p data-en="Useful tools to help you understand your device performance."
+         data-km="ឧបករណ៍មានប្រយោជន៍សម្រាប់ស្វែងយល់ពីដំណើរការទូរស័ព្ទ។">
+        Useful tools to help you understand your device performance.
+      </p>
+    </div>
+
+    <div class="grid">
+      <article class="card reveal">
+        <div class="emoji">🎮</div>
+        <h3 data-en="FPS Tracking" data-km="តាមដាន FPS">FPS Tracking</h3>
+        <p data-en="Observe frame-rate changes during supported gaming sessions."
+           data-km="ពិនិត្យការប្រែប្រួល FPS ក្នុងវគ្គលេងដែលគាំទ្រ។">Observe frame-rate changes during supported gaming sessions.</p>
+      </article>
+      <article class="card reveal">
+        <div class="emoji">⚡</div>
+        <h3 data-en="CPU Monitor" data-km="តាមដាន CPU">CPU Monitor</h3>
+        <p data-en="View available processor usage statistics."
+           data-km="មើលស្ថិតិការប្រើប្រាស់ CPU ដែលអាចរកបាន។">View available processor usage statistics.</p>
+      </article>
+      <article class="card reveal">
+        <div class="emoji">🧠</div>
+        <h3 data-en="Memory Monitor" data-km="តាមដាន RAM">Memory Monitor</h3>
+        <p data-en="Review memory usage and device workload."
+           data-km="ពិនិត្យការប្រើប្រាស់ RAM និងបន្ទុកឧបករណ៍។">Review memory usage and device workload.</p>
+      </article>
+      <article class="card reveal">
+        <div class="emoji">🌡️</div>
+        <h3 data-en="Temperature" data-km="សីតុណ្ហភាព">Temperature</h3>
+        <p data-en="View supported temperature readings from your device."
+           data-km="មើលតម្លៃសីតុណ្ហភាពដែលឧបករណ៍គាំទ្រ។">View supported temperature readings from your device.</p>
+      </article>
+      <article class="card reveal">
+        <div class="emoji">📊</div>
+        <h3 data-en="Session History" data-km="ប្រវត្តិវគ្គលេង">Session History</h3>
+        <p data-en="Review saved gaming sessions and recorded statistics."
+           data-km="ពិនិត្យវគ្គលេង និងស្ថិតិដែលបានរក្សាទុក។">Review saved gaming sessions and recorded statistics.</p>
+      </article>
+      <article class="card reveal">
+        <div class="emoji">🏆</div>
+        <h3 data-en="Performance Insights" data-km="ព័ត៌មានដំណើរការ">Performance Insights</h3>
+        <p data-en="Use available statistics to better understand performance."
+           data-km="ប្រើស្ថិតិដែលមាន ដើម្បីយល់ពីដំណើរការឧបករណ៍។">Use available statistics to better understand performance.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="download" class="reveal">
+    <div class="download-box">
+      <div class="eyebrow" data-en="DOWNLOAD CENTER" data-km="មជ្ឈមណ្ឌលទាញយក">DOWNLOAD CENTER</div>
+      <div class="download-row">
+        <div>
+          <h2 data-en="Ready to try FPS Meter?" data-km="ចង់សាក FPS Meter ហើយឬនៅ?">Ready to try FPS Meter?</h2>
+          <p data-en="Visit GitHub Releases to check available APK files, versions and release notes."
+             data-km="ចូល GitHub Releases ដើម្បីពិនិត្យ APK កំណែ និងព័ត៌មានកំណែដែលមាន។">
+            Visit GitHub Releases to check available APK files, versions and release notes.
+          </p>
+          <span class="version" data-en="Release status: Check GitHub" data-km="ស្ថានភាព៖ ពិនិត្យ GitHub">Release status: Check GitHub</span>
+        </div>
+        <a class="btn primary" href="https://github.com/ahyakonbong5-create/Fps-meter/releases"
+           target="_blank" rel="noopener" data-en="View Releases ↗" data-km="មើល Releases ↗">
+          View Releases ↗
+        </a>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <strong data-en="01 · Browse releases" data-km="01 · មើលកំណែ">01 · Browse releases</strong>
+          <p data-en="Find APK files published by the developer."
+             data-km="ស្វែងរក APK ដែលអ្នកបង្កើតបានបង្ហោះ។">Find APK files published by the developer.</p>
+        </div>
+        <div class="step">
+          <strong data-en="02 · Check version" data-km="02 · ពិនិត្យកំណែ">02 · Check version</strong>
+          <p data-en="Read release notes before installing."
+             data-km="អានព័ត៌មានកំណែមុនដំឡើង។">Read release notes before installing.</p>
+        </div>
+        <div class="step">
+          <strong data-en="03 · Install safely" data-km="03 · ដំឡើងដោយសុវត្ថិភាព">03 · Install safely</strong>
+          <p data-en="Only install APKs from sources you trust."
+             data-km="ដំឡើង APK ពីប្រភពដែលអ្នកទុកចិត្តប៉ុណ្ណោះ។">Only install APKs from sources you trust.</p>
+        </div>
+      </div>
+      <p class="note" data-en="Download counts and performance results are not shown unless verified."
+         data-km="មិនបង្ហាញចំនួនទាញយក ឬលទ្ធផលដំណើរការដែលមិនទាន់ផ្ទៀងផ្ទាត់ទេ។">
+        Download counts and performance results are not shown unless verified.
+      </p>
+    </div>
+  </section>
 </main>
 
 <footer>
-  <p>FPS Meter · Android Performance Monitor</p>
-  <p>Independent project. Not affiliated with Google or Android.</p>
-  <a href="https://github.com/ahyakonbong5-create/Fps-meter"
-     style="color:#a99cff">GitHub Repository</a>
+  <p><strong>FPS METER</strong> · <span data-en="Android Gaming Performance" data-km="ការតាមដានដំណើរការហ្គេម Android">Android Gaming Performance</span></p>
+  <p data-en="Independent project. Not affiliated with Google or Android."
+     data-km="គម្រោងឯករាជ្យ មិនមានទំនាក់ទំនងជាមួយ Google ឬ Android ទេ។">
+    Independent project. Not affiliated with Google or Android.
+  </p>
+  <p><a href="https://github.com/ahyakonbong5-create/Fps-meter"
+        target="_blank" rel="noopener">GitHub Repository ↗</a></p>
 </footer>
+
+<script>
+/* Khmer / English switch */
+(() => {
+  const button = document.getElementById('langBtn');
+  let language = localStorage.getItem('fpsmeter-language') || 'en';
+
+  function updateLanguage() {
+    document.documentElement.lang = language;
+    document.querySelectorAll('[data-en][data-km]').forEach(element => {
+      element.textContent = element.dataset[language];
+    });
+    button.textContent = language === 'en' ? 'ខ្មែរ' : 'English';
+    localStorage.setItem('fpsmeter-language', language);
+  }
+
+  button.addEventListener('click', () => {
+    language = language === 'en' ? 'km' : 'en';
+    updateLanguage();
+  });
+  updateLanguage();
+})();
+
+/* Scroll reveal */
+(() => {
+  const items = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window) ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    items.forEach(item => item.classList.add('visible'));
+    return;
+  }
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  items.forEach(item => observer.observe(item));
+})();
+
+/* Lightweight animated background particles */
+(() => {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const canvas = document.getElementById('particles');
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+
+  let width = 0, height = 0, particles = [];
+  const mobile = window.innerWidth < 600;
+  const count = mobile ? 20 : 42;
+
+  function resize() {
+    const ratio = Math.min(window.devicePixelRatio || 1, 1.5);
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = Math.floor(width * ratio);
+    canvas.height = Math.floor(height * ratio);
+    ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+    particles = Array.from({length: count}, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      r: Math.random() * 1.5 + .4,
+      vy: Math.random() * .25 + .08,
+      vx: (Math.random() - .5) * .18
+    }));
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, width, height);
+    for (const p of particles) {
+      p.y -= p.vy;
+      p.x += p.vx;
+      if (p.y < -5) { p.y = height + 5; p.x = Math.random() * width; }
+      if (p.x < -5) p.x = width + 5;
+      if (p.x > width + 5) p.x = -5;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(160,145,255,.7)';
+      ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+
+  resize();
+  window.addEventListener('resize', resize, {passive:true});
+  draw();
+})();
+</script>
 </body>
   </html>
